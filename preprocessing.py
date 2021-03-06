@@ -6,8 +6,8 @@ import sys
 
 
 class Preprocessing:
-    def __init__(self, df):
-        self.df = df
+    def __init__(self):
+        self.df = pd.DataFrame()
 
     @staticmethod
     def generate_tokens(input_text):
@@ -17,7 +17,8 @@ class Preprocessing:
         tokens = nltk.word_tokenize(no_numbers)
         return tokens
 
-    def preprocessing(self):
+    def preprocessing(self, df):
+        self.df = df
         tqdm.pandas()
         nltk.download('punkt')
         print("Preprocessing & Generating tokens...")

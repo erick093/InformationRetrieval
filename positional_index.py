@@ -3,8 +3,8 @@ from tqdm import tqdm
 
 
 class PositionalIndex:
-    def __init__(self, df):
-        self.df = df
+    def __init__(self):
+        self.df = pd.DataFrame()
         self.positional_index = {}
 
     def pos_index(self, tokens, doc_id):
@@ -21,7 +21,8 @@ class PositionalIndex:
                 self.positional_index[term].append({})
                 self.positional_index[term][1][doc_id] = [pos]
 
-    def create_index(self):
+    def create_index(self, df):
+        self.df = df
         tqdm.pandas()
         print("Creating positional index...")
         self.df.progress_apply(lambda x: self.pos_index(x['Tokens'], x['ID']), axis=1)
