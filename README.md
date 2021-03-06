@@ -1,12 +1,13 @@
-# InformationRetrieval
+# Information Retrieval
 Information Retrieval VUB - Project
 
 Positional index of the form:
 
-{"word" : [total_occurrences, {doc_ID_1 : [POS_1, POS_2]}, {doc_ID_2 : [POS_1]} ] }
+{"word" : [total_occurrences, {doc_ID_1 : [POS_1, POS_2], doc_ID_2 : [POS_1]}]}
+
 For example:
 
-{"mama" : [ 123, {1: [1,2]}, {5: [10,20]}  ]}
+{"mama" : [ 123, {1: [1,2], 5: [10,20]}]}
 
 The word "mama" has an total occurrences of 123 across the documents, and appears in document 1 at position [1,2] and in document 5 in position [10,20]
 ## Usage
