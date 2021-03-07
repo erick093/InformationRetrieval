@@ -10,13 +10,19 @@ class PorterStemmer:
 
     def is_consonant(self, word, i):
         letter = word[i]
-        if self.letter_consonant(letter) and i == 0:
-            return True
-        else:
-            if letter == 'y' and self.letter_consonant(word[i-1]):
+
+        if self.letter_consonant(letter):
+            #print(word,letter,i)
+            if letter != 'y':
+                return True
+            elif letter == 'y' and i == 0:
+                return True
+            elif letter == 'y' and self.letter_consonant(word[i-1]):
                 return False
             else:
                 return True
+        else:
+            return False
 
     def is_vowel(self, word, i):
         return not(self.is_consonant(word, i))
@@ -45,7 +51,7 @@ class PorterStemmer:
         return count
 
     def cvc(self, stem):
-        if len(stem) >= 3:
+        if len(stem) > 3:
             if self.is_consonant(stem, -3) and self.is_vowel(stem, -2) and self.is_consonant(stem, -1):
                 if stem[-1] != 'w' and stem[-1] != 'x' and stem[-1] != 'y':
                     return True
