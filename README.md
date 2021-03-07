@@ -24,9 +24,9 @@ word : Placeholder of {word} is the word which you want to see the positional in
 ## Example
 To generate create a positional index and see the index of the word "american"
 ```bash
-python main.py american --save
+python main.py american  --stem --save
 ```
 To load a positional index and see the index of the word "american"
 ```bash
-python main.py american --load
+python main.py american  --stem --load
 ```
