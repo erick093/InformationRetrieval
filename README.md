@@ -12,10 +12,12 @@ For example:
 The word "mama" has an total occurrences of 123 across the documents, and appears in document 1 at position [1,2] and in document 5 in position [10,20]
 ## Usage
 ```bash
-python main.py word --mode
+python main.py word --stem --mode
 ```
 
 word : Placeholder of {word} is the word which you want to see the positional index
+
+--stem: --stem to stem the words/ --nostem to not stem the words
 
 --mode : --save to create and save the positional index of the dataset, --load to load it from a previously created positional index
 

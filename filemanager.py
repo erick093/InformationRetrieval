@@ -24,19 +24,32 @@ class FileManager:
         return df
 
     @staticmethod
-    def save_dict(obj):
+    def save_dict(obj, flag):
         print("Saving dictionary...")
-        with open('dict' + '.pkl', 'wb') as f:
-            pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+        if flag == "--stem":
+            with open('dict_stem' + '.pkl', 'wb') as f:
+                pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+        else:
+            with open('dict_nostem' + '.pkl', 'wb') as f:
+                pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
     @staticmethod
-    def load_dict():
+    def load_dict(flag):
         print("Loading dictionary...")
-        try:
-            with open('dict.pkl', 'rb') as f:
-                return pickle.load(f)
-        except:
-            print("ERROR: dictionary not found!")
-            sys.exit(1)
+        if flag == "--stem":
+            try:
+                with open('dict_stem.pkl', 'rb') as f:
+                    return pickle.load(f)
+            except:
+                print("ERROR: dictionary not found!")
+                sys.exit(1)
+        else:
+            try:
+                with open('dict_nostem.pkl', 'rb') as f:
+                    return pickle.load(f)
+            except:
+                print("ERROR: dictionary not found!")
+                sys.exit(1)
+
 
 

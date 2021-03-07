@@ -13,7 +13,8 @@ class Preprocessing:
     def generate_tokens(input_text):
         no_citation = re.sub(r'\[\d+\]', ' ', input_text)
         no_nonalpha = re.sub(r'([^\s\w]|)+', '', no_citation)
-        no_numbers = ' '.join(word.lower() for word in no_nonalpha.split() if not word.isdigit())
+        no_numbers = re.sub(r'\b[0-9]+\b\s*', '', no_nonalpha)
+        #no_numbers = ' '.join(word.lower() for word in no_nonalpha.split() if not word.isdigit())
         tokens = nltk.word_tokenize(no_numbers)
         return tokens
 
