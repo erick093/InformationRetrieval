@@ -33,6 +33,7 @@ class FileManager:
             with open('dict_nostem' + '.pkl', 'wb') as f:
                 pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
+
     @staticmethod
     def load_dict(flag):
         print("Loading dictionary...")
@@ -43,13 +44,17 @@ class FileManager:
             except:
                 print("ERROR: dictionary not found!")
                 sys.exit(1)
-        else:
+        elif flag == "--nostem":
             try:
                 with open('dict_nostem.pkl', 'rb') as f:
                     return pickle.load(f)
             except:
                 print("ERROR: dictionary not found!")
                 sys.exit(1)
+        else:
+            print("ERROR: Third argument has to be --stem or --nostem")
+
+            sys.exit(1)
 
 
 

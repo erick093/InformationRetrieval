@@ -15,7 +15,7 @@ class Preprocessing:
         no_nonalpha = re.sub(r'([^\s\w]|)+', '', no_citation)
         no_numbers = re.sub(r'\b[0-9]+\b\s*', '', no_nonalpha)
         #no_numbers = ' '.join(word.lower() for word in no_nonalpha.split() if not word.isdigit())
-        tokens = nltk.word_tokenize(no_numbers)
+        tokens = nltk.word_tokenize(no_numbers.lower())
         return tokens
 
     def preprocessing(self, df):

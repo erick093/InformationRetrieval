@@ -251,21 +251,6 @@ class PorterStemmer:
         return word
 
     def stem(self, word):
-        # try:
-        #     if len(word) > 2:
-        #         word = self.step_1a(word)
-        #         word = self.step_1b(word)
-        #         word = self.step_1c(word)
-        #         word = self.step_2(word)
-        #         word = self.step_3(word)
-        #         word = self.step_4(word)
-        #         word = self.step_5a(word)
-        #         word = self.step_5b(word)
-        #         return word
-        #     else:
-        #         return word
-        # except:
-        #     print("ERROR: Word {} cannot be stemmed".format(word))
         if len(word) > 2:
             word = self.step_1a(word)
             word = self.step_1b(word)

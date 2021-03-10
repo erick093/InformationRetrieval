@@ -12,21 +12,23 @@ For example:
 The word "mama" has an total occurrences of 123 across the documents, and appears in document 1 at position [1,2] and in document 5 in position [10,20]
 ## Usage
 ```bash
-python main.py word --stem --mode
+python main.py query --query_type --stem --mode
 ```
 
-word : Placeholder of {word} is the word which you want to see the positional index
+query: query to execute.
 
---stem: --stem to stem the words/ --nostem to not stem the words
+--query_type: perform proximity _query_ in the form: word_1/k%word_2, e.g. beatles/3%concert
 
---mode : --save to create and save the positional index of the dataset, --load to load it from a previously created positional index
+--stem: --stem to stem the words or --nostem to not stem the words.
+
+--mode : --save to create and save the positional index of the dataset, --load to load it from a previously created positional index.
 
 ## Example
-To generate create a positional index and see the index of the word "american"
+To generate create a positional index and execute a proximity query between the words _beatles_ and _concert_, no stemming.
 ```bash
-python main.py american  --stem --save
+python main.py  concert/3%beatles --proximity --nostem --save
 ```
-To load a positional index and see the index of the word "american"
+To load a positional index and execute a proximity query between the words _beatles_ and _concert_, stemming enabled.
 ```bash
-python main.py american  --stem --load
+python main.py concert/3%beatles --proximity --stem --load
 ```
