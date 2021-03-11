@@ -46,7 +46,24 @@ class Permuterm:
         matched_keys = self.execute_query(query_1, return_keys=True)
         result = []
         for item in matched_keys:
-            if query_2 in item:
+            if query_2 in item[len(query_1):]:
+                result.append(self.permuterm_dict[item])
+        return result
+
+    def query_type_6(self, sectors):  # case A*B*C*D
+        query_1 = sectors[3] + '$' + sectors[0]
+        size_q1 = len(query_1)
+        query_2 = sectors[1]
+        query_3 = sectors[2]
+        matched_keys = self.execute_query(query_1, return_keys=True)
+        partial_result = []
+        for item in matched_keys:
+            if query_2 in item[size_q1:]:
+                partial_result.append(item)
+        result = []
+        for item in partial_result:
+            position = item[size_q1:].find(query_2)  # find the position where query_2 appears after query_1
+            if query_3 in item[size_q1+position:]:  # magic happens here ;) ( if query_3 appears after query_2 and query_1)
                 result.append(self.permuterm_dict[item])
         return result
 
@@ -55,6 +72,7 @@ class Permuterm:
         length_sectors = len(sectors)
         if length_sectors == 4:
             print("case 6")
+            dict_values = self.query_type_6(sectors)
         elif length_sectors == 3:
             if sectors[0] == '' and sectors[2] == '':
                 print("case 3")
