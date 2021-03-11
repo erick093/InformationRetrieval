@@ -3,6 +3,7 @@ from preprocessing import Preprocessing
 from filemanager import FileManager
 from positional_index import PositionalIndex
 from proximity_query import ProximityQuery
+from permuterm import Permuterm
 
 
 class Main:
@@ -11,7 +12,6 @@ class Main:
 
     @staticmethod
     def execute(file):
-
         if len(sys.argv) > 1:
             query = sys.argv[1]  # query
             query_type = sys.argv[2]  # query type: positional or permuterm
@@ -50,6 +50,12 @@ class Main:
 
             elif query_type == '--permuterm':
                 print("Permuterm Query: {}".format(query))
+                permuterm = Permuterm(index)
+                permuterm.construct_index()
+                result = permuterm.query(query)
+                print("words matched: ", list(result.keys()))
+                # print("--------------------------------------------------------------------------------------")
+                # print("words matched: ", result)
 
             else:
                 print(
