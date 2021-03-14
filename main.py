@@ -46,7 +46,8 @@ class Main:
                 k = int(query[re1 + 1:re2])
                 print("Proximity Query - word_1='{}', word_2='{}', k={}".format(word_1, word_2, k))
                 prox_query = ProximityQuery(index, word_1, word_2, k)
-                prox_query.query()
+                result = prox_query.query()
+                print(result)
 
             elif query_type == '--permuterm':
                 print("Permuterm Query: {}".format(query))
@@ -65,7 +66,9 @@ class Main:
 
 if __name__ == '__main__':
     print("\n")
-    print("-----------Information Retrieval System-----------")
+    print("------------------------Information Retrieval System------------------------")
+    print("******** Project by : Erick Escobar & Faiza Tasnia")
+    print("******** IRDM VUB Course - 2021")
     print("\n")
     file = 'dataset/wiki_movie_plots_deduped.csv'
     Main.execute(file)

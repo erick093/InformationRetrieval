@@ -8,6 +8,7 @@ class ProximityQuery:
         self.word_1 = word1
         self.word_2 = word2
         self.k = k
+        self.result = []
 
     def query(self):
         try:
@@ -24,12 +25,26 @@ class ProximityQuery:
         if not intersection:
             print("ERROR: words '{}' and '{}' do not occur together in any document!".format(self.word_1, self.word_2))
             sys.exit(1)
-        for item in intersection:
-            print("docID: ", item)
-            # print(index_word_1[item])
-            # print(index_word_2[item])
-            # implement your logic here and return the result
+        for idx, item in enumerate(intersection):
+            pos_list_1 = index_word_1[item]
+            pos_list_2 = index_word_2[item]
+            pos_res_list = []
+            ii = jj = 0
+            while ii != len(pos_list_1):
+                while jj != len(pos_list_2):
+                    distance = abs(pos_list_1[ii] - pos_list_2[jj])
+                    if distance <= self.k:
+                        pos_res_list.append(pos_list_2[jj])
+                    elif pos_list_2[jj] > pos_list_1[ii]:
+                        break
+                    jj += 1
+                while pos_res_list != [] and abs(pos_res_list[0] - pos_list_1[ii]) > self.k:
+                    pos_res_list.remove(pos_res_list[0])
 
-        #return intersection
+                for it in pos_res_list:
+                    self.result.append({'docID': item, 'position_word1': pos_list_1[ii], 'position_word2': it})
+                ii += 1
+
+        return self.result
 
 
