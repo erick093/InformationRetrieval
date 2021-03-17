@@ -1,7 +1,7 @@
 import pandas as pd
 from tqdm import tqdm
 from stemmer import PorterStemmer
-
+import time
 
 class PositionalIndex:
     def __init__(self):
@@ -32,7 +32,11 @@ class PositionalIndex:
         self.stem_flag = flag
         tqdm.pandas()
         print("Creating positional index...")
+        start = time.time()
         self.df.progress_apply(lambda x: self.pos_index(x['Tokens'], x['ID']), axis=1)
+        end = time.time()
+        exec_time = round(end-start)
+        print("Index created in {} seconds | stem={}".format(exec_time, self.stem_flag))
         return self.positional_index
 
 
